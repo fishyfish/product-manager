@@ -1,0 +1,5 @@
+_id,title,price,description,createdAt,updatedAt,__v
+6029eaeec8c3676a02d66e23,nothing,44,here but an error,2021-02-15T03:30:54.317Z,2021-02-15T03:30:54.317Z,0
+6029f02ac8c3676a02d66e24,Green Apples,2.99,Organic Green Apples,2021-02-15T03:53:14.681Z,2021-02-15T03:53:14.681Z,0
+6029f051c8c3676a02d66e25,Red Apples,1.99,Organic Red Apples,2021-02-15T03:53:53.151Z,2021-02-15T03:53:53.151Z,0
+602aaf93c8c3676a02d66e26,Bananas,1.99,Monkey Food,2021-02-15T17:29:55.338Z,2021-02-15T17:29:55.338Z,0

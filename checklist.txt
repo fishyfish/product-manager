@@ -1,0 +1,31 @@
+After closing Visual Studio Code, all your servers will shut down also, correct?
+
+List of things that need restarting after reopening a React Project that has Mongo DB. 
+
+1. cd server: npm init -y -- TRUE / FALSE?
+2. /server: npm i express mongoose cors socket.io -- TRUE / FALSE?
+3. cd client: npm i axios @reach/router socket.io-client -- TRUE / FALSE?
+4. Confused? http://learn.codingdojo.com/m/146/6960/50361
+5. /server nodemon server.js
+6. /client npm start
+
+If localhost:8000 isn't starting or cross talking with :3000:
+
+If localhost:3000 isn't startingor cross talking with :3000: 
+
+Perhaps Create a Script once I figure out where I am messing up. 
+
+In the current situation. React is running fine on localhost:3000. Page with form displays. Fill out form and submit, and the database 
+gets the form data. 
+
+localhost:8000/api is ok, it returns "my foot hurts"
+
+But localhost:8000/api/products throws a 404 error. Cannot GET /api/products, 
+
+That tells me the API is not working. It was, but not now. is this CORS? That would make the most sense, because we are talking cross
+
+PULL HAIR OUT:
+1.  Delete the node_modules directory
+2.  Delete the package-lock.json file
+3.  Run npm install
+4. Run npm start
