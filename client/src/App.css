@@ -11,7 +11,7 @@ html,body{
 
 .App {
   margin:0;
-  padding:0;
+  padding:10px;
   text-align: left;
 }
 
@@ -42,7 +42,7 @@ html,body{
   border-radius: 12px;
   box-shadow: 0 0 33px 0 rgba(0,0,0,0.75);
   margin: 0 auto;
-  padding: 25px 50px;
+  padding: 25px;
   position:relative;
   max-width: 450px;
 }
@@ -51,7 +51,7 @@ html,body{
   background: white;
   border:0;
   box-shadow: 0 0 33px 0 rgba(0,0,0,0.75) inset;
-  padding: 25px 50px;
+  padding: 15px 20px;
   
 }
 
@@ -99,7 +99,7 @@ button.toggle-me:active {
 } 
 
 h1.centerme{
-  color: #fff;
+  color: #333;
   margin:0 auto;
   padding: 25px 0;
   text-align:center;

@@ -7,7 +7,6 @@ import ProductForm from './components/ProductForm';
 function App() {
   return (
     <div className="App">
-      <h1 className="centerme">Product Manager</h1>
       {/* <Router> 
         <Main path="/products/" />
         <ProductDetail path="/products/:id" />
