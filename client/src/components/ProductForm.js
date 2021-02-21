@@ -9,7 +9,7 @@ const ProductForm = () => {
     //handler when the form is submitted
     const onSubmitHandler = e => {
         //prevent default behavior of the submit
-        e.preventDefault();
+        //e.preventDefault();
         //make a post request to create a new product
         axios.post('http://localhost:8000/api/products', {
             title,

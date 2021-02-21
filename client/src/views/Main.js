@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ProductForm from '../components/ProductForm';
 import ProductList from '../components/ProductList';
+import ProductDetail from '../components/ProductDetail';
 
 const Main = () => {
     const[product, setProduct] = useState([]);
@@ -12,13 +13,11 @@ const Main = () => {
             setProduct(res.data);
             setLoaded(true);
         });
-
     }, [])
     return (
         <div className="form-wrapper">
             <div className="add-me"></div>
             <ProductForm/>
-        
             <div id="results">
                 <h2>List of Products </h2>
                     {loaded && <ProductList product={product}/>}

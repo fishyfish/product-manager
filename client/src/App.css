@@ -41,7 +41,7 @@ html,body{
   border:6px solid orange;
   border-radius: 12px;
   box-shadow: 0 0 33px 0 rgba(0,0,0,0.75);
-  margin: 0 auto;
+  margin: 25px auto;
   padding: 25px;
   position:relative;
   max-width: 450px;
@@ -51,6 +51,7 @@ html,body{
   background: white;
   border:0;
   box-shadow: 0 0 33px 0 rgba(0,0,0,0.75) inset;
+  margin-top: 0;
   padding: 15px 20px;
   
 }
@@ -101,7 +102,7 @@ button.toggle-me:active {
 h1.centerme{
   color: #333;
   margin:0 auto;
-  padding: 25px 0;
+  padding: 5px 0 20px;
   text-align:center;
 }
 
@@ -145,6 +146,15 @@ ol li:nth-child(even) {
 
 .newLine {
   display:block;
+}
+
+.error {
+  background: white;
+  border:4px dashed red;
+  color: red;
+  margin: 55px auto;
+  max-width:400px;
+  padding: 15px;
 }
 
 @keyframes App-logo-spin {
