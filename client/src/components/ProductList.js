@@ -23,10 +23,14 @@ const ProductList = (props) => {
                     return <li key={idx}> 
                         <span className="newLine"><em>Title:</em> {product.title}</span>
                             <span className="newLine"><em>ID:</em> {product._id}</span>
-                            
-                            <button className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
-                                View Product
-                            </button>
+                            <div class="align-right">
+                                <button className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
+                                    View Product
+                                </button>
+                            </div>
+                            {/* <Link to={"/products/" + product._id }>
+                                Edit 
+                            </Link> works fine, but I like the button */} 
 
                         {/* <span className="newLine"><em>Price:</em> {product.price}</span>
                         <span className="newLine"><em>Description:</em> {product.description}</span> */}

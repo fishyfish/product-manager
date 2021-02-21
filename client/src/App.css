@@ -110,6 +110,7 @@ button.myButton {
   margin-top: 12px;
   outline:0;
   padding: 2px 8px;
+  justify-content: flex-end;
 }
 
 button.myButton:hover {
@@ -123,6 +124,11 @@ button.myButton:active {
   color: white;
   border: 2px solid red;
 } 
+
+.align-right {
+  display:flex;
+  justify-content: flex-end;
+}
 
 h1.centerme{
   color: #333;
