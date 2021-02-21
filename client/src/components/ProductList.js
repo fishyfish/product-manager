@@ -24,7 +24,7 @@ const ProductList = (props) => {
                         <span className="newLine"><em>Title:</em> {product.title}</span>
                             <span className="newLine"><em>ID:</em> {product._id}</span>
                             
-                            <button onClick={() => navigate(`/products/${product._id}`)}>
+                            <button className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
                                 View Product
                             </button>
 
