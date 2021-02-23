@@ -14,13 +14,17 @@ const ProductEdit = (props) => {
         //prevent default behavior of the submit
         e.preventDefault();
         //make a post request to create a new product
+        // works fine
         axios.put('http://localhost:8000/api/products/' + props.id, {
             title,
             price,
             description,      
         })   
-        
-            .then(res=>console.log(res))
+        .then((response) => {
+            console.log(response.data);
+            // setProduct(response.data);
+        })
+            
             .catch(err=>console.log(err))
     };
     
@@ -34,17 +38,15 @@ const ProductEdit = (props) => {
             .catch(err=>console.log('something is errored out' + err))
     }, []);
 
-    const onDelete = e => {
-        const {removeFromDom} = props;
-        const deleteProduct = (productId) => {
+
+    const onDelete = (e) => { 
         axios.delete('http://localhost:8000/api/products/' + props.id)   
-            removeFromDom(props)
         .then(res => {
             console.log(res + "was removed, I think");
+            setProduct(res.data);
         })
         .catch(err=>console.log(err))
-    }
-};
+    };
 
     return (
         <div className="form-wrapper edit">
@@ -67,10 +69,14 @@ const ProductEdit = (props) => {
                     Back to Products
                 </button>
                 <button className="myButton" type="submit">Submit</button>
-                <Link className="linkButton" to={"/products/" + props.id}>
-                    Delete Me
-                </Link> 
-                <button onClick={(e)=>{onDelete(product._id)}}>
+                {/* <Link className="linkButton" to={"/products/" + props.id}>
+                   nothing
+                </Link>  */}
+
+                {/* Got humdinger situation. Got to edit product, and hit back to products button and data is removed except for id  */}
+                {/* Edit one line of product, and hit submit and two other fields not touched get data removed */}
+                {/* stop making changes on two files and then getting confused, and breaking stuff.  */}
+                <button className="myButton" onClick={(e)=>{onDelete(product._id)}}>
                         Delete
                     </button>
             </div>

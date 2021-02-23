@@ -4,31 +4,41 @@ import {Link, link, navigate} from '@reach/router';
 
 const ProductList = (props) => {
     const [allProducts, setAllProducts] = useState([]);
+    const [product, setProduct] = useState({})
+    const [title, setTitle] = useState("");
+    const [price, setPrice] = useState("");
+    const [description, setDescription] = useState("");
+    const [loaded, setLoaded] = useState([]);
     const { removeFromDom } = props;
     
     useEffect(() => {
         axios.get('http://localhost:8000/api/products') // this totally works
-        .then((response) => {
-            console.log(response.data);
-            setAllProducts(response.data);
+        .then((res) => {
+            console.log(res.data);
+            setAllProducts(res.data);
         })
         .catch((err) => {
             console.log(err);
         });
     }, []);
-    const onDelete = e => {
-        const {removeFromDom} = props;
-        const deleteProduct = (productId) => {
-        axios.delete('http://localhost:8000/api/products/' + props.id)   
-            removeFromDom(props)
-            
+
+    const deleteProduct = (productId) => {
+        axios.delete('http://localhost:8000/api/products/' + productId)
+            .then(res => {
+                console.log("I think I removed this product id." + productId)
+                removeFromDom(productId)
+            })
+    }
+
+    const onDelete = (e) => { 
+        axios.delete('http://localhost:8000/api/products/' + product._id)   
         .then(res => {
             console.log(res + "was removed, I think");
-            removeFromDom(props)
+            removeFromDom(product._id);
         })
         .catch(err=>console.log(err))
-    }};
-    // app.delete('/api/products/:id', ProductController.deleteProduct);
+    };
+
     return (
         <div>
             <ol>
@@ -41,18 +51,23 @@ const ProductList = (props) => {
                                 <button className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
                                     View Product
                                 </button>
-                            
-                            {/* <Link className="linkButton" to={"/products/" + product._id + "/edit"}>
-                                Edit 
-                            </Link> */}
+                        
+                            {/* delete is not working */}
                             <button className="myButton" onClick={(e)=>{onDelete(product._id)}}>
                                 Delete
                             </button>
+                            <button className="myButton" onClick={(e)=>{deleteProduct(product._id)}}>
+                                Delete2
+                            </button>
 
-                           {/* This bloody works all by itself. */}
+                           {/* This bloody works all by itself. But I've yet to get it to work inside of the function above. */}
                             <button className="myButton" onClick={(e)=>{removeFromDom(product._id)}}>
                                 No Dom
                             </button>
+
+                            {/* <Link className="linkButton" to={"/products/" + product._id + "/edit"}>
+                                Edit 
+                            </Link> */}
                     </div>
                     </li>
                 })}
