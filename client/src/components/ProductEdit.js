@@ -73,7 +73,6 @@ const ProductEdit = (props) => {
                    nothing
                 </Link>  */}
 
-                {/* Got humdinger situation. Got to edit product, and hit back to products button and data is removed except for id  */}
                 {/* Edit one line of product, and hit submit and two other fields not touched get data removed */}
                 {/* stop making changes on two files and then getting confused, and breaking stuff.  */}
                 <button className="myButton" onClick={(e)=>{onDelete(product._id)}}>
