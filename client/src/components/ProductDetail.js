@@ -26,6 +26,11 @@ const ProductDetail = (props) => {
                 <button className="myButton" onClick={() => navigate(`/products/`)}>
                     Back to All Products
                 </button>
+
+                
+                <Link className="linkButton" to={"/products/" + props.id + "/edit"}>
+                    Edit
+                </Link>
             </div>
         </div>
     )

@@ -6,6 +6,8 @@ import Main from './views/Main';
 import ProductDetail from './components/ProductDetail';
 import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
+import ProductEdit from './components/ProductEdit';
+
 function App() {
   const NotFound = () => {
     return (
@@ -18,6 +20,7 @@ function App() {
       <Router>
         <Main path="/products/" />
         <ProductDetail path="/products/:id" />  
+        <ProductEdit path="/products/:id/edit/" />  
         <NotFound default /> 
       </Router>
     </div>

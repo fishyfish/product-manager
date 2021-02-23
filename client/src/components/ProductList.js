@@ -4,6 +4,8 @@ import {Link, link, navigate} from '@reach/router';
 
 const ProductList = (props) => {
     const [allProducts, setAllProducts] = useState([]);
+    const { removeFromDom } = props;
+    
     useEffect(() => {
         axios.get('http://localhost:8000/api/products') // this totally works
         .then((response) => {
@@ -14,7 +16,19 @@ const ProductList = (props) => {
             console.log(err);
         });
     }, []);
-
+    const onDelete = e => {
+        const {removeFromDom} = props;
+        const deleteProduct = (productId) => {
+        axios.delete('http://localhost:8000/api/products/' + props.id)   
+            removeFromDom(props)
+            
+        .then(res => {
+            console.log(res + "was removed, I think");
+            removeFromDom(props)
+        })
+        .catch(err=>console.log(err))
+    }};
+    // app.delete('/api/products/:id', ProductController.deleteProduct);
     return (
         <div>
             <ol>
@@ -23,17 +37,23 @@ const ProductList = (props) => {
                     return <li key={idx}> 
                         <span className="newLine"><em>Title:</em> {product.title}</span>
                             <span className="newLine"><em>ID:</em> {product._id}</span>
-                            <div class="align-right">
+                            <div className="align-right">
                                 <button className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
                                     View Product
                                 </button>
-                            </div>
-                            {/* <Link to={"/products/" + product._id }>
+                            
+                            {/* <Link className="linkButton" to={"/products/" + product._id + "/edit"}>
                                 Edit 
-                            </Link> works fine, but I like the button */} 
+                            </Link> */}
+                            <button className="myButton" onClick={(e)=>{onDelete(product._id)}}>
+                                Delete
+                            </button>
 
-                        {/* <span className="newLine"><em>Price:</em> {product.price}</span>
-                        <span className="newLine"><em>Description:</em> {product.description}</span> */}
+                           {/* This bloody works all by itself. */}
+                            <button className="myButton" onClick={(e)=>{removeFromDom(product._id)}}>
+                                No Dom
+                            </button>
+                    </div>
                     </li>
                 })}
             </ol>
