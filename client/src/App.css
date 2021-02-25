@@ -202,6 +202,14 @@ ol li:nth-child(even) {
   padding: 15px;
 }
 
+.error-text {
+  border: 2px solid red;
+  color: red;
+  display: block;
+  margin-top: 4px;
+  padding:3px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
