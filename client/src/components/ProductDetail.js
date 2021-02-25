@@ -40,7 +40,7 @@ const ProductDetail = (props) => {
                         <span className="newLine"><em>Description:</em> {product.description}</span>
                 </div>
                 <button className="myButton" onClick={() => navigate(`/products/`)}>
-                    Back to All Products
+                    Back to Products
                 </button>
                 <Link className="linkButton" to={"/products/" + props.id + "/edit"}>
                     Edit
