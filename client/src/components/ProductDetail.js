@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import {Link, link, navigate} from '@reach/router';
 
 const ProductDetail = (props) => {
-    const [product, setProduct] = useState({})
+    const [allProducts, setAllProducts] = useState([]);
+    const [product, setProduct] = useState({});
     const [loaded, setLoaded] = useState([]);
+    const { removeFromDom } = props;
     useEffect(() => {
         axios.get("http://localhost:8000/api/products/" + props.id) // works fine
             .then((res) => {
@@ -14,6 +16,20 @@ const ProductDetail = (props) => {
             })
             .catch(err=>console.log('something is errored out' + err))
     }, [])
+    const deleteProduct = (productId) => {
+        axios.delete("http://localhost:8000/api/products/" + productId)
+        .then ((res) => {
+            removeFromDom(productId);
+            const deletedProduct = res.data;
+            console.log(deletedProduct);
+            const filteredProductsArray = allProducts.filter((skiff) => product._id !== productId);
+            setAllProducts(filteredProductsArray);
+        })
+        .catch ((err) => {
+            console.log(err);
+            navigate(`/products/`); // go back to products after deleting from the ProductDetail Page. 
+        });
+    }
     return (
         <div className="form-wrapper">
             <div className="form-wrapper">
@@ -26,11 +42,10 @@ const ProductDetail = (props) => {
                 <button className="myButton" onClick={() => navigate(`/products/`)}>
                     Back to All Products
                 </button>
-
-                
                 <Link className="linkButton" to={"/products/" + props.id + "/edit"}>
                     Edit
                 </Link>
+                <button className="myButton" type="button" onClick={() => deleteProduct(product._id)}>Delete Product</button>
             </div>
         </div>
     )

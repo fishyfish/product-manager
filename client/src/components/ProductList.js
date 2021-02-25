@@ -23,21 +23,18 @@ const ProductList = (props) => {
     }, []);
 
     const deleteProduct = (productId) => {
-        axios.delete('http://localhost:8000/api/products/' + productId)
-            .then(res => {
-                console.log("I think I removed this product id." + productId)
-                removeFromDom(productId)
-            })
-    }
-
-    const onDelete = (e) => { 
-        axios.delete('http://localhost:8000/api/products/' + product._id)   
-        .then(res => {
-            console.log(res + "was removed, I think");
-            removeFromDom(product._id);
+        axios.delete("http://localhost:8000/api/products/" + productId)
+        .then ((res) => {
+            removeFromDom(productId);
+            const deletedProduct = res.data;
+            console.log(deletedProduct);
+            const filteredProductsArray = allProducts.filter((skiff) => product._id !== productId);
+            setAllProducts(filteredProductsArray);
         })
-        .catch(err=>console.log(err))
-    };
+        .catch ((err) => {
+            console.log(err);
+        });
+    }
 
     return (
         <div>
@@ -48,26 +45,11 @@ const ProductList = (props) => {
                         <span className="newLine"><em>Title:</em> {product.title}</span>
                             <span className="newLine"><em>ID:</em> {product._id}</span>
                             <div className="align-right">
-                                <button className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
+                                <button type="button" className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
                                     View Product
                                 </button>
                         
-                            {/* delete is not working */}
-                            <button className="myButton" onClick={(e)=>{onDelete(product._id)}}>
-                                Delete
-                            </button>
-                            <button className="myButton" onClick={(e)=>{deleteProduct(product._id)}}>
-                                Delete2
-                            </button>
-
-                           {/* This bloody works all by itself. But I've yet to get it to work inside of the function above. */}
-                            <button className="myButton" onClick={(e)=>{removeFromDom(product._id)}}>
-                                No Dom
-                            </button>
-
-                            {/* <Link className="linkButton" to={"/products/" + product._id + "/edit"}>
-                                Edit 
-                            </Link> */}
+                            <button className="myButton" type="button" onClick={() => deleteProduct(product._id)}>Delete Product</button>
                     </div>
                     </li>
                 })}

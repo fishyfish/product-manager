@@ -10,6 +10,7 @@ const ProductForm = () => {
     const onSubmitHandler = e => {
         //prevent default behavior of the submit
         //e.preventDefault();
+        // but it prevents the page getting a product added to dom. comment out and it works fine
         //make a post request to create a new product
         axios.post('http://localhost:8000/api/products', {
             title,

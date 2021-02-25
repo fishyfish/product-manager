@@ -1,50 +1,51 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {Link, link, navigate} from '@reach/router';
+import { setServers } from 'dns';
 
 const ProductEdit = (props) => {
+    const {productId} = props;
     const [product, setProduct] = useState({})
     const [loaded, setLoaded] = useState([]);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const { removeFromDom } = props;
-    //handler when the form is submitted
-    const onSubmitHandler = e => {
-        //prevent default behavior of the submit
-        e.preventDefault();
-        //make a post request to create a new product
-        // works fine
-        axios.put('http://localhost:8000/api/products/' + props.id, {
-            title,
-            price,
-            description,      
-        })   
-        .then((response) => {
-            console.log(response.data);
-            // setProduct(response.data);
-        })
-            
-            .catch(err=>console.log(err))
-    };
-    
+   
     useEffect(() => {
         axios.get("http://localhost:8000/api/products/" + props.id) // works fine
             .then((res) => {
                 console.log('This is so awesome' + res.data);
                 setProduct(res.data)
                 setLoaded(true);
+
+                const myProduct = res.data;
+                console.log(myProduct);
+                setTitle(myProduct.title);
+                setTitle(myProduct.price);
+                setTitle(myProduct.description);
             })
             .catch(err=>console.log('something is errored out' + err))
     }, []);
 
-
-    const onDelete = (e) => { 
-        axios.delete('http://localhost:8000/api/products/' + props.id)   
-        .then(res => {
-            console.log(res + "was removed, I think");
-            setProduct(res.data);
+    const onSubmitHandler = e => {
+        //prevent default behavior of the submit
+        e.preventDefault();
+        axios.put('http://localhost:8000/api/products/' + props.id, {
+            title:title,
+            price:price,
+            description:description,      
+        })   
+        .then((res) => {
+            if(res.data.errors){
+                console.log(res.data.errors)
+                setServers(res.data.errors)
+            } else {
+                console.log(res.data);
+                navigate(`/products/`);
+            }
         })
+            
         .catch(err=>console.log(err))
     };
 
@@ -69,15 +70,6 @@ const ProductEdit = (props) => {
                     Back to Products
                 </button>
                 <button className="myButton" type="submit">Submit</button>
-                {/* <Link className="linkButton" to={"/products/" + props.id}>
-                   nothing
-                </Link>  */}
-
-                {/* Edit one line of product, and hit submit and two other fields not touched get data removed */}
-                {/* stop making changes on two files and then getting confused, and breaking stuff.  */}
-                <button className="myButton" onClick={(e)=>{onDelete(product._id)}}>
-                        Delete
-                    </button>
             </div>
             </form>
         </div>
