@@ -45,7 +45,9 @@ const ProductDetail = (props) => {
                 <Link className="linkButton" to={"/products/" + props.id + "/edit"}>
                     Edit
                 </Link>
-                <button className="myButton" type="button" onClick={() => deleteProduct(product._id)}>Delete Product</button>
+                {/* <button className="myButton" type="button" onClick={() => deleteProduct(product._id)}>Delete Product</button> */}
+                <button type="button" className="myButton" 
+                            onClick={() => { if (window.confirm('Are you sure you wish to delete this Product?')) deleteProduct(product._id) } } >Delete Product</button>
             </div>
         </div>
     )
