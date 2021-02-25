@@ -12,7 +12,7 @@ const ProductList = (props) => {
     const { removeFromDom } = props;
     
     useEffect(() => {
-        axios.get('http://localhost:8000/api/products') // this totally works
+        axios.get('http://localhost:8000/api/products/') // this totally works
         .then((res) => {
             console.log(res.data);
             setAllProducts(res.data);

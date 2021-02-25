@@ -26,6 +26,7 @@ module.exports.createProduct = (request, response) => {
 // This works
 module.exports.getAllProducts = (request, response) => {
     Product.find({})
+    .sort({ title: "ascending"})
     .then (product => response.json(product))
     .catch(err => response.json(err));
 }

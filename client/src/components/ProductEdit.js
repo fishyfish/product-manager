@@ -11,6 +11,7 @@ const ProductEdit = (props) => {
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const { removeFromDom } = props;
+    const { errs, setErrs} = useState({});
    
     useEffect(() => {
         axios.get("http://localhost:8000/api/products/" + props.id) // works fine
@@ -22,8 +23,8 @@ const ProductEdit = (props) => {
                 const myProduct = res.data;
                 console.log(myProduct);
                 setTitle(myProduct.title);
-                setTitle(myProduct.price);
-                setTitle(myProduct.description);
+                setPrice(myProduct.price);
+                setDescription(myProduct.description);
             })
             .catch(err=>console.log('something is errored out' + err))
     }, []);
