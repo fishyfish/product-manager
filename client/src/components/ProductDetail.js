@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {Link, link, navigate} from '@reach/router';
+import DeleteButton from './DeleteButton';
 
 const ProductDetail = (props) => {
     const [allProducts, setAllProducts] = useState([]);
     const [product, setProduct] = useState({});
+    const [products, setProducts] = useState({});
     const [loaded, setLoaded] = useState([]);
     const { removeFromDom } = props;
     useEffect(() => {
@@ -22,13 +24,16 @@ const ProductDetail = (props) => {
             removeFromDom(productId);
             const deletedProduct = res.data;
             console.log(deletedProduct);
-            const filteredProductsArray = allProducts.filter((skiff) => product._id !== productId);
+            const filteredProductsArray = allProducts.filter((product) => product._id !== productId);
             setAllProducts(filteredProductsArray);
         })
         .catch ((err) => {
             console.log(err);
             navigate(`/products/`); // go back to products after deleting from the ProductDetail Page. 
         });
+        const removeFromDom = productId => {
+            setProducts(products.filter(product => product._id != productId))
+        }
     }
     return (
         <div className="form-wrapper">
@@ -45,8 +50,7 @@ const ProductDetail = (props) => {
                 <Link className="linkButton" to={"/products/" + props.id + "/edit"}>
                     Edit
                 </Link>
-                <button type="button" className="myButton" 
-                            onClick={() => { if (window.confirm('Are you sure you wish to delete this Product?')) deleteProduct(product._id) } } >Delete Product</button>
+                <DeleteButton productId={product._id} successCallback={()=>removeFromDom(product._id)} />
             </div>
         </div>
     )

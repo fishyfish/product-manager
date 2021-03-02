@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { ESRCH } from 'constants';
+//import { ESRCH } from 'constants';
 
-const ProductForm = () => {
+const ProductForm = (props) => {
     //keep track of what is being typed via useState hook
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
@@ -20,6 +20,7 @@ const ProductForm = () => {
             price:price,
             description:description,
         }
+        
         console.log(newProduct);
         
         axios.post('http://localhost:8000/api/products/', {
