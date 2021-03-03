@@ -37,12 +37,12 @@ const ProductDetail = (props) => {
     }
     return (
         <div className="form-wrapper">
+            <h1 className="centerme white">Product Description</h1>
             <div className="form-wrapper">
-                <h2>Product Description</h2>
                 <div>
-                        <span className="newLine"><em>Title:</em> {product.title}</span> 
-                        <span className="newLine"><em>Price:</em> {product.price}</span> 
-                        <span className="newLine"><em>Description:</em> {product.description}</span>
+                        <span className="newLine break-word"><em>Title:</em> {product.title}</span> 
+                        <span className="newLine break-word"><em>Price:</em> {product.price}</span> 
+                        <span className="newLine break-word"><em>Description:</em> {product.description}</span>
                 </div>
                 <button className="myButton" onClick={() => navigate(`/products/`)}>
                     Back to Products

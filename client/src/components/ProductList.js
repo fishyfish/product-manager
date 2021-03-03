@@ -57,11 +57,7 @@ const ProductList = (props) => {
                                 <button type="button" className="myButton" onClick={() => navigate(`/products/${product._id}`)}>
                                     View Product
                                 </button>
-                                {/* DOM removal not working on this page. */}
                                 <DeleteButton productId={product._id} successCallback={()=>removeFromDom(product._id)} />
-                            {/* <button className="myButton" type="button" onClick={() => deleteProduct(product._id)}>Delete Product</button> */}
-                            {/* <button type="button" className="myButton" 
-                            onClick={() => { if (window.confirm('Are you sure you wish to delete this Product?')) deleteProduct(product._id) } } >Delete Product</button> */}
                     </div>
                     </li>
                 })}
@@ -70,6 +66,4 @@ const ProductList = (props) => {
         </div>
     )
 }
-
-{/* <ProductDetail path="/products/:id" /> */}
 export default ProductList;

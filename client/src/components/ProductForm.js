@@ -46,7 +46,7 @@ const ProductForm = (props) => {
         <form onSubmit={onSubmitHandler}>
             
             <div className="form-wrapper">
-            <h1 className="centerme">Product Manager</h1>
+            <h2 className="">Add a Product</h2>
             <p>
                 <label>Title</label>
                 <input type="text" placeholder="Title" onChange = {(e)=>setTitle(e.target.value)}/>
